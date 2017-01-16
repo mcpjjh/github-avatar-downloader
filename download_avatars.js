@@ -10,13 +10,25 @@ var GITHUB_TOKEN = "41530ef33cab32c42a7918d1bc87b8e09d98abd9";
 
 function getRepoContributors(repoOwner, repoName, cb) {
 
+  var request = require('request');
   var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
-console.log(requestURL);
+  var options = {
+    uri: requestURL,
+    headers: {
+      'User-Agent' : 'GitHub Avatar Downloader - Student Project'
+    }
+  }
+
+  request(options, function (err, response, body) {
+
+  })
+
+  console.log(requestURL);
 
 }
 
-  getRepoContributors("jquery", "jquery", function(err, result) {
+getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
   // console.log(requestURL);
