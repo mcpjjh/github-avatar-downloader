@@ -2,7 +2,7 @@ var request = require('request');
 var fs = require('fs');
 var fetch = require('isomorphic-fetch')
 
-var args = process.argv.slice(2)
+let args = process.argv
 
 var GITHUB_USER = "mcpjjh";
 var GITHUB_TOKEN = "41530ef33cab32c42a7918d1bc87b8e09d98abd9";
@@ -35,12 +35,14 @@ function getRepoContributors(repoOwner, repoName, cb) {
   })
 }
 
+if (args.length !== 2) {
+  console.log("Enter a repo owner and repo name.")
+} else {
+  getRepoContributors(args[0], args[1], function(err, result) {
+    console.log("Errors:", err);
+    console.log("Result:", result);
+  })
+}
 function downloadImageByURL(url, login) {
   request.get(url).pipe(fs.createWriteStream(`./avatars/${login}.jpg`));
 }
-
-
-getRepoContributors(args[0], args[1], function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
-  })
