@@ -18,18 +18,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   }
 
-  // request.get(options, function (err, result) {
-      // let parsedBody = JSON.parse(result.body);
-      // parsedBody.forEach((item) => {downloadImageByURL(item.avatar_url, item.login)});
-  // });
-
-  // request(options, function (err, response, result) {
-  //   let parsedBody = JSON.parse(result)
-  //   for (let i = 0; i < parsedBody.length; i++) {
-  //     console.log(parsedBody[i].avatar_url)
-  //   }
-  // })
-
   fetch(options.uri, options.headers).then(res => res.json()).then(parsedBody => {
     parsedBody.forEach((item) => {downloadImageByURL(item.avatar_url, item.login)});
   })
